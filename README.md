@@ -13,8 +13,8 @@
 		- ./BetApp/BetApp/Migrations
 		- ./BetApp/BetApp/Migrations
 	- Make migrations for each app
-		./BetApp/manage.py makemigrations <app_name>   [BetApp and cauth]
-		./BetApp/manage.py migrate
+		- ./BetApp/manage.py makemigrations <app_name>   [BetApp and cauth]
+		- ./BetApp/manage.py migrate
 
 - Server
 	- Put the nginx config file running:
