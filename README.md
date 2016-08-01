@@ -2,6 +2,7 @@
  CREATED BY DENIS VIEIRA
 ############################
 
+- Sustem: Ubuntu 16.04 LTS
 - Python Version 2.7
 - uWSGI version 2.0.13.1
 - With the FMQBetAppConf nginx configuration, app address is: 127.0.0.1:8000
