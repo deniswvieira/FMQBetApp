@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+    <!-- Bootstrap core CSS -->
+{% block content %}
+	<script src="{% static 'scripts/form/useredit_val.js' %}"></script>
+  		
+	{% if form.errors %}
+		<div class="alert alert-danger" role="alert"><b>Ohh!</b> {{ form.errors }}{{ form.non_field_errors }}</div>
+	{% endif %}
+	{% if success == True %}
+	<div class="alert alert-success" role="alert"><b>Well done!</b> You have successfuly updated your info!</div>
+	{% endif %}
+	<h2>Profile</h2>
+	<hr>
+	<h4>User Info</h4>
+	<hr>
+	<form action="/account/password/" method="post">{% csrf_token %}
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_username">Username</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="text" id="id_username" name="username" maxlength="30" value="{{user.username}}">
+				<span class="field-validation-valid text-danger" id="val_username" data-valmsg-replace="true"></span>
+				<input type="hidden" name="id" value="{{user.id}}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_email">Email:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="email" id="id_email" name="email" value="{{user.email}}"/>
+				<span class="field-validation-valid text-danger" id="val_email" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_password1">Password:</label>
+			<div class="col-md-10">
+				<a href="/account/password/">[Change]</a>
+			</div>
+		</div>	
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input class="btn btn-default" id="id_submit" value="Update" />
+			</div>
+		</div>
+		<br>
+		<hr>
+		<h4>Invite</h4>
+		<hr>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_invite">Invite:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" readonly="readonly" class="form-control text-box single-line" type="text" id="id_invite" name="invite" value="{{ invite }}"> <a style="cursor:pointer;" id="ShowInviteLink">Create Invite Link</a>
+			</div>
+		</div>
+		<div class="form-group" id="invite_link" style="display:none">
+			<label class="control-label col-md-2" for="id_invite">Invite Link:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" readonly="readonly" class="form-control text-box" type="text" id="id_inviteLink" name="invite" value=""><a id="copy-link" style="cursor:pointer;">Copy link</a>
+			</div>
+		</div>
+	</div>
+	</form>
+
+{% endblock %}

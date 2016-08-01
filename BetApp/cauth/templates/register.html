@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+    <!-- Bootstrap core CSS -->
+{% block content %}
+	<script src="{% static 'scripts/form/register_val.js' %}"></script>
+
+	{{ form.errors }}
+	{{ form.non_field_errors }}
+	<h2>Register</h2>
+	<hr>
+	<form action="/account/register/" method="post">{% csrf_token %}
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_username">Username</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="text" id="id_username" name="username" maxlength="30">
+				<span class="field-validation-valid text-danger" id="val_username" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_email">Email:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="email" id="id_email" name="email" />
+				<span class="field-validation-valid text-danger" id="val_email" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_password1">Password:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="password" id="id_password1" name="password1">
+				<span class="field-validation-valid text-danger" id="val_password1" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_password2">Confirm Password:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="password" id="id_password2" name="password2">
+				<span class="field-validation-valid text-danger" id="val_password2" data-valmsg-replace="true"></span>
+			</div>
+		</div>		
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_balance">Initial Balance:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" type="number" id="id_balance" name="balance" value="0">
+				<span class="field-validation-valid text-danger" idr="val_balance" data-valmsg-replace="true"></span>
+			</div>
+			
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="id_invite">Invite:</label>
+			<div class="col-md-10">
+				<input style="max-width: 280px" class="form-control text-box single-line" value="{{invite}}" type="text" id="id_invite" name="invite">
+				<span class="field-validation-valid text-danger" id="val_invite" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input class="btn btn-default" id="id_submit" type="submit" value="Register" />
+			</div>
+		</div>
+	</div>
+	</form>
+
+{% endblock %}

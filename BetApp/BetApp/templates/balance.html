@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h2>Balance</h2>
+	<hr>
+	<div class="col-md-8">
+		<h4>Add Balance</h4>
+		<hr>
+		<form action="/balance/" method="post">{% csrf_token %}
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-md-2" for="id_username">Balance</label>
+					<div class="col-md-10">
+						<input style="max-width: 100px" class="form-control text-box single-line" type="number" id="id_balance" name="balance">
+						<span class="field-validation-valid text-danger" id="val_balance" data-valmsg-replace="true"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input class="btn btn-default" id="id_submit" type="submit" value="Add" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+		<div class="col-md-4">
+		<h4>Current Balance</h4>
+		<hr>
+		<h3>{{ balance }}</h3>
+	</div>
+
+{% endblock %}

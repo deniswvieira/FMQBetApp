@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Denis Vieira">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Denis Vieira</title>
+    {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static "assets/scripts/vendor/jquery.min.js" %}"><\/script>')</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">DJANGO</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% if home_active %}
+            <li class="active"><a href="/">Home</a></li>
+            {% else %}
+            <li><a href="/">Home</a></li>
+            {% endif %}
+            {% if bet_active %}
+            <li class="active"><a href="/bet">Bet</a></li>
+            {% else %}
+            <li><a href="/bet">Bet</a></li>
+            {% endif %}
+            {% if balance_active %}
+            <li class="active"><a href="/balance">Balance</a></li>
+            {% else %}
+            <li><a href="/balance">Balance</a></li>
+            {% endif %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ user.username }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/account/edit">Profile</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="account/logout/">Logout</a></li>
+                </ul>
+              </li>
+            {% else %}
+              {% if register_active %}
+              <li class="active"><a href="account/register">Register</a></li>
+              <li><a href="account/login/">Login</a></li>
+              {% elif login_active %}
+              <li><a href="account/register">Register</a></li>
+              <li class="active"><a href="account/login/">Login</a></li>
+              {% else %}
+              <li><a href="account/register">Register</a></li>
+              <li><a href="account/login/">Login</a></li>
+              {% endif %}
+            {% endif %}
+          </ul>
+        </div> <!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container body-content">
+      {% block content %}{% endblock content %}
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="{% static 'scripts/ie10-viewport-bug-workaround.js' %}"></script>-->
+  </body>
+</html>
