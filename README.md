@@ -1,12 +1,12 @@
 ############################
-# CREATED BY DENIS VIEIRA
+ CREATED BY DENIS VIEIRA
 ############################
 
-# Python Version 2.7
-# uWSGI version 2.0.13.1
-# With the FMQBetAppConf nginx configuration, app address is: 127.0.0.1:8000
+- Python Version 2.7
+- uWSGI version 2.0.13.1
+- With the FMQBetAppConf nginx configuration, app address is: 127.0.0.1:8000
 
-Important steps on setup:
+#Important steps on setup:
 - Database:
 	- Change the ./BetApp/BetApp/settings.py file with the credentials of the server and the database;
 	- Delete folders:
