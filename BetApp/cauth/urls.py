@@ -13,4 +13,5 @@ urlpatterns = patterns('',
   url(r'register_success/$', cauth.views.register_success),
   url(r'edit/$', cauth.views.edit),
   url(r'password/$', cauth.views.password),
+  url(r'passw/$', cauth.views.passw)
 )

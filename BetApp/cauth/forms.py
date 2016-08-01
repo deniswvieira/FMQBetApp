@@ -19,6 +19,19 @@ class MyRegistrationForm(UserCreationForm):
 		username = self.cleaned_data['username']
 		return username
 
+	def clean_email(self):
+		data = self.cleaned_data['email']
+		try:
+			uemail = User.objects.get(email=data)
+			if uemail:
+				raise forms.ValidationError("The e-mail already exists on database.")
+			else:
+				pass
+		except User.DoesNotExist:
+			pass
+		return data
+
+
 	def save(self, commit=True):
 		user = super(MyRegistrationForm, self).save(commit=False)
 		user.email = self.cleaned_data['email']

@@ -4,8 +4,9 @@
 {% block content %}
 	<script src="{% static 'scripts/form/register_val.js' %}"></script>
 
-	{{ form.errors }}
-	{{ form.non_field_errors }}
+	{% if form.errors %}
+		<div class="alert alert-danger" role="alert"><b>Ohh!</b> {{ form.errors }}{{ form.non_field_errors }}</div>
+	{% endif %}
 	<h2>Register</h2>
 	<hr>
 	<form action="/account/register/" method="post">{% csrf_token %}

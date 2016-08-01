@@ -93,7 +93,8 @@ def register(request):
 				uinfo.invite_id = get_random_string(length=30)
 				uinfo.save()
 				return HttpResponseRedirect('/account/register_success')
-			return render_to_response('register.html', args, {'register_active:':True})
+			args['register_active'] = True
+			return render(request, 'register.html', args)
 
 		else:
 			args['form'] = MyRegistrationForm()
@@ -148,6 +149,6 @@ def password(request):
 	else:
 		return HttpResponseRedirect('/')
 
-@login_required
+@login_required(login_url='account/login')
 def passw(request):
 	return render(request, 'edit_password.html', args)

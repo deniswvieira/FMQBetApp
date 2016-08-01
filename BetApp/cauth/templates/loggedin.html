@@ -4,6 +4,6 @@
 
 	<h2>hi {{ user.username }}, you are now logged in!</h2>
 	<hr>
-	<p>Click <a href="/account/logout/">here</a> to logout.</p>
+	<p>Click <a href="{% url 'root' %}account/logout/">here</a> to logout.</p>
 
 {% endblock %}

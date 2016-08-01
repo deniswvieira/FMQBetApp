@@ -6,6 +6,8 @@ from BetApp.models import Bet
 from forms import BetForm
 from random import randint
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -71,3 +73,10 @@ def bet(request):
 			return render(request, 'bet.html', {'bet_active': True, 'balance': balance, 'play': False})
 	else:
 		return HttpResponseRedirect('/')
+
+@login_required
+def bet_history(request):
+	args = {}
+	Bets = Bet.objects.filter(user_id=request.user.id)
+	args['Bets'] = Bets
+	return render(request, 'bet_history.html', args)
