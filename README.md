@@ -20,6 +20,9 @@
 	- If you wish you can activate the virtualenv in order to avoid conflits with yous installed packages:
 		- source ./bin/activate
 - Server
+	- Edit files to your system:
+		- ./BetApp/FMQBetAppConf
+		- ./BetApp/BetApp_uwsgi.ini
 	- Put the nginx config file running:
 		- sudo ln -s ./BetApp/FMQBetAppConf /etc/nginx/sites-enabled/
 		- sudo service nginx restart
