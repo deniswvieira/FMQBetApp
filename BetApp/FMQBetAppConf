@@ -1,0 +1,24 @@
+upstream django {
+	#server 127.0.0.1:8001;
+	server unix:/home/dwv/Documents/FMQDjango/FMQBetApp/BetApp/BetApp.sock;
+}
+
+server {
+	listen 8000;
+	server_name 127.0.0.1;
+	charset utf-8;
+	client_max_body_size 75M;
+
+	location /media {
+		alias /home/dwv/Documents/FMQDjango/FMQBetApp/BetApp/media;
+	}
+
+	location /static {
+		alias /home/dwv/Documents/FMQDjango/FMQBetApp/BetApp/static;
+	}
+
+	location / {
+		uwsgi_pass django;
+		include /etc/nginx/uwsgi_params;
+	}
+}
