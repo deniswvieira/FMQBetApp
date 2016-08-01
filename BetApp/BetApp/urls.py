@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 	url(r'^$', BetApp.views.index, name='root'),
 	#(r'^$', BetApp.views.index),
 	(r'^admin/', admin.site.urls),
-	(r'^account/', include(cauth.urls)),
+	(r'^accounts/', include(cauth.urls)),
 	(r'^balance/$', BetApp.views.balance),
 	(r'^bet/$', BetApp.views.bet),
 	(r'^bet/history/', BetApp.views.bet_history)

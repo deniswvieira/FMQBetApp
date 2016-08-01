@@ -58,7 +58,7 @@ $('document').ready(function(){
 		$('#invite_link')[0].style.display = 'block';
 		prot = window.location.protocol;
 		hostname = window.location.host;
-		path = "/account/register?inv=";
+		path = "/accounts/register?inv=";
 		invite = $('#id_invite').val();
 
 		link1 = prot.concat(hostname);

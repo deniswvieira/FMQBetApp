@@ -14,7 +14,11 @@
 						<th>Winnigs</th>
 					</tr>
 					{% for item in Bets %}
-					<tr>
+					{% if item.choice == 1 %}
+					<tr style="background-color:rgb(255, 190, 190);">
+					{% else %}
+					<tr style="background-color:rgb(210, 255, 190);">
+					{% endif %}
 						<td>{{ item.id }}</td>
 						<td>{{ item.bet }}</td>
 						{% if item.choice == 0 %}

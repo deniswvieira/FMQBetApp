@@ -7,13 +7,14 @@
 	{% endif %}
 	<h2>Login</h2>
 	<hr>
-	<form action="/account/auth/" method="post">{% csrf_token %}
+	<form action="/accounts/auth/" method="post">{% csrf_token %}
 		<div class="form-horizontal">
 			<div class="form-group">
 				<label class="control-label col-md-2" for="id_username">Username</label>
 				<div class="col-md-10">
 					<input style="max-width: 280px" class="form-control text-box single-line" type="text" id="id_username" name="username" maxlength="15">
 					<span class="field-validation-valid text-danger" id="val_username" data-valmsg-replace="true"></span>
+					<input id="next" name="next" type="hidden" value="{{next}}">
 				</div>
 			</div>
 			<div class="form-group">

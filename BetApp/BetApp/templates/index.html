@@ -2,14 +2,25 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
 <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-
-
+    <h1>Bet App</h1>
+    <p><b>Hello {{request.user.username}},</b> this is a simple web app where you can add credits and try your lucky on a bet game.</p>
+    <br>
+    <p>
+    	<a class="btn btn-lg btn-success" href="{% url 'root' %}balance" role="button">Add Credits &raquo;</a>
+      	<a class="btn btn-lg btn-primary" href="{% url 'root' %}bet" role="button">Bet Game &raquo;</a>
+    </p>
+</div>
+{% else %}
+<div class="jumbotron">
+    <h1>Bet App</h1>
+    <p>This is a simple web app where you can <a href="{% url 'root' %}accounts/register">sign up</a>, add credits and try your lucky on a bet game.</p>
+    <br>
+    <p>
+      	<a class="btn btn-lg btn-success" href="{% url 'root' %}accounts/register" role="button">Sign up &raquo;</a>
+      	<a class="btn btn-lg btn-primary" href="{% url 'root' %}accounts/login" role="button">Sign in &raquo;</a>
+    </p>
+</div>
+{% endif %}
 {% endblock %}

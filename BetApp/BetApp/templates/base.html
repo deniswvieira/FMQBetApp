@@ -16,7 +16,7 @@
     <script>window.jQuery || document.write('<script src="{% static "assets/scripts/vendor/jquery.min.js" %}"><\/script>')</script>
   </head>
 
-  <body>
+  <body style="min-height:50px !important;">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -51,23 +51,23 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ user.username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{% url 'root' %}account/edit">Profile</a></li>
+                  <li><a href="{% url 'root' %}accounts/edit">Profile</a></li>
                   <li><a href="{% url 'root' %}bet/history/">Bet History</a></li>
                   <li role="separator" class="divider"></li>
                   <!--<li class="dropdown-header">Nav header</li>-->
-                  <li><a href="{% url 'root' %}account/logout/">Logout</a></li>
+                  <li><a href="{% url 'root' %}accounts/logout/">Logout</a></li>
                 </ul>
               </li>
             {% else %}
               {% if register_active %}
-              <li class="active"><a href="{% url 'root' %}account/register">Register</a></li>
-              <li><a href="{% url 'root' %}account/login/">Login</a></li>
+              <li class="active"><a href="{% url 'root' %}accounts/register">Register</a></li>
+              <li><a href="{% url 'root' %}accounts/login/">Login</a></li>
               {% elif login_active %}
-              <li><a href="{% url 'root' %}account/register">Register</a></li>
-              <li class="active"><a href="{% url 'root' %}account/login/">Login</a></li>
+              <li><a href="{% url 'root' %}accounts/register">Register</a></li>
+              <li class="active"><a href="{% url 'root' %}accounts/login/">Login</a></li>
               {% else %}
-              <li><a href="{% url 'root' %}account/register">Register</a></li>
-              <li><a href="{% url 'root' %}account/login/">Login</a></li>
+              <li><a href="{% url 'root' %}accounts/register">Register</a></li>
+              <li><a href="{% url 'root' %}accounts/login/">Login</a></li>
               {% endif %}
             {% endif %}
           </ul>
@@ -77,7 +77,13 @@
 
     <div class="container body-content">
       {% block content %}{% endblock content %}
+      <br><br><br><br>
+      <footer>
+      <hr>
+      <p>© 2016 - Denis Vieira</p>
+    </footer>
     </div> <!-- /container -->
+
 
 
     <!-- Bootstrap core JavaScript

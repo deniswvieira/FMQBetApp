@@ -20,6 +20,8 @@ def login(request):
 		c = {}
 		c['login_active'] = True
 		c.update(csrf(request))
+		if request.GET.get('next'):
+			c['next'] = request.GET.get('next')
 		return render_to_response('login.html', c)
 
 
@@ -29,23 +31,25 @@ def invalid_login(request):
 def loggedin(request):
 	return render(request, 'loggedin.html')
 
+@login_required
 def logout(request):
-	if request.user.is_authenticated:
-		auth.logout(request)
-		return render_to_response('logout.html')
-	else:
-		return HttpResponseRedirect('/account/login')
+	auth.logout(request)
+	return render_to_response('logout.html')
 
 def auth_view(request):	
 	username = request.POST.get('username', '')
 	password = request.POST.get('password', '')
+	nextd	= request.POST.get('next')
 	user = auth.authenticate(username=username, password=password)
 
 	if user is not None:
 		auth.login(request, user)
-		return HttpResponseRedirect('/account/loggedin')
+		if nextd:
+			return HttpResponseRedirect(nextd)
+		else:
+			return HttpResponseRedirect('/accounts/loggedin')
 	else:
-		return HttpResponseRedirect('/account/invalid')
+		return HttpResponseRedirect('/accounts/invalid')
 
 def register(request):
 	if request.user.is_authenticated():
@@ -92,7 +96,7 @@ def register(request):
 				uinfo.initial_balance = initial_balance
 				uinfo.invite_id = get_random_string(length=30)
 				uinfo.save()
-				return HttpResponseRedirect('/account/register_success')
+				return HttpResponseRedirect('/accounts/register_success')
 			args['register_active'] = True
 			return render(request, 'register.html', args)
 
@@ -103,14 +107,13 @@ def register(request):
 			return render_to_response('register.html', args)
 
 
-
 def register_success(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/')
 	else:
 		return render_to_response('register_success.html')
 
-
+@login_required
 def edit(request):
 	if request.user.is_authenticated():
 		args = {}
@@ -131,6 +134,7 @@ def edit(request):
 	else:
 		return HttpResponseRedirect('/')
 
+@login_required
 def password(request):
 	if request.user.is_authenticated():
 		args = {}
@@ -149,6 +153,3 @@ def password(request):
 	else:
 		return HttpResponseRedirect('/')
 
-@login_required(login_url='account/login')
-def passw(request):
-	return render(request, 'edit_password.html', args)
