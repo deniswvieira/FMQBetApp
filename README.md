@@ -11,7 +11,7 @@
 	- Change the ./BetApp/BetApp/settings.py file with the credentials of the server and the database;
 	- Delete folders:
 		- ./BetApp/BetApp/Migrations
-		- ./BetApp/BetApp/Migrations
+		- ./BetApp/cauth/Migrations
 	- Make migrations for each app
 		- ./BetApp/manage.py makemigrations <app_name>   [BetApp and cauth]
 		- ./BetApp/manage.py migrate
