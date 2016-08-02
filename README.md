@@ -10,16 +10,16 @@
 
 #Pre requesites
 - Git
-	- $ sudo apt-get install git
+	- `$ sudo apt-get install git`
 
 - MySQL
-	- $ sudo apt-get install mysql-server
+	- `$ sudo apt-get install mysql-server`
 
 - Virtual Environment
-	- $ sudo apt-get install virtualenv
+	- `$ sudo apt-get install virtualenv`
 
 - Nginx
-	- $ sudo apt-get install nginx
+	- `$ sudo apt-get install nginx`
 
 #Instalation
 - Set up Project and Virtual Environment
@@ -63,5 +63,36 @@
 - Run application
 	- `$ uwsgi --ini BetApp_uwsgi.ini`
 	- Visit the application on 127.0.0.1:8000
+
+#Directories Tree
+
+```
+BetAppEnv/
+├── FMQBetApp/
+│   ├── BetApp/
+│   │   ├── Templates/
+│   │	│   └── ... .html
+│   │	└── ... .py
+│   │
+│   ├── cauth/
+│   │	├── Templates/
+│   │	│   └── ... .html
+│   │	└── ... .py
+│   │
+│   ├── static /... 
+│   ├── manage.py
+│   ├── FMQBetAppConf
+│   ├── BetApp_uwsgi.ini
+│   ├── README.md
+│   └── .gitignore
+│
+├──
+├── bin/...
+├── include/...
+├── lib/...
+├── local/...
+└── pip-selfcheck.json
+
+```
 	
 
