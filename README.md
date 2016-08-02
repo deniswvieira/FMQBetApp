@@ -1,5 +1,6 @@
 ############################
- BET APP - CREATED BY DENIS VIEIRA
+#BET APP
+CREATED BY DENIS VIEIRA
 ############################
 
 - System Ubuntu 16.04 LTS
@@ -21,7 +22,7 @@
 - Nginx
 	- `$ sudo apt-get install nginx`
 
-#Instalation
+#Install
 - Set up Project and Virtual Environment
 	- Create the virtual environment (project folder):
 		- `$ virtualenv BetAppEnv`
