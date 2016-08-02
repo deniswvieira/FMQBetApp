@@ -1,31 +1,66 @@
 ############################
- CREATED BY DENIS VIEIRA
+ BET APP - CREATED BY DENIS VIEIRA
 ############################
 
 - System Ubuntu 16.04 LTS
 - Python Version 2.7
-- uWSGI version 2.0.13.1
+- Django Version 1.9.8
+- uWSGI Version 2.0.13.1
 - With the FMQBetAppConf nginx configuration, app address is: 127.0.0.1:8000
 
-#Important steps on setup:
-- Database:
-	- Change the ./BetApp/BetApp/settings.py file with the credentials of the server and the database;
-	- Delete folders:
-		- ./BetApp/BetApp/Migrations
-		- ./BetApp/cauth/Migrations
-	- Make migrations for each app
-		- ./BetApp/manage.py makemigrations <app_name>   [BetApp and cauth]
-		- ./BetApp/manage.py migrate
+#Pre requesites
+- Git
+	- $ sudo apt-get install git
+
+- MySQL
+	- $ sudo apt-get install mysql-server
 
 - Virtual Environment
-	- If you wish you can activate the virtualenv in order to avoid conflits with yous installed packages:
-		- source ./bin/activate
-- Server
-	- Edit files to your system:
-		- ./BetApp/FMQBetAppConf
-		- ./BetApp/BetApp_uwsgi.ini
-	- Put the nginx config file running:
-		- sudo ln -s ./BetApp/FMQBetAppConf /etc/nginx/sites-enabled/
-		- sudo service nginx restart
-	- Use the uwsgi .ini file to set up our server:
-		- uwsgi --ini ./BetApp/BetApp_uwsgi.ini
+	- $ sudo apt-get install virtualenv
+
+- Nginx
+	- $ sudo apt-get install nginx
+
+#Instalation
+- Set up Project and Virtual Environment
+	- Create the virtual environment (project folder):
+		- $ virtualenv BetAppEnv
+		- $ cd BetAppEnv
+		- $ source bin/activate
+	- Install Django 1.9.8:
+		- $ pip install -I django==1.9.8
+	- Clone App into the project folder:
+		- $ git clone https://github.com/deniswvieira/FMQBetApp.git
+
+- Set up Server with Nginx and uWSGI
+	- install uWSGI:
+		- $ pip install uwsgi
+	- Edit uwsgi configuration file (BetApp_uwsgi.ini) in order to path's match with your directories
+	- Create nginx configuration file:
+		- $ sudo nano /etc/nginx/sites-available/BetAppConf
+		- Copy and paste the code on FMQBetAppConfig file and edit in order to path's match with your directories
+		- press Ctrl + X, y, and enter to exit when the file is ready
+		- $ sudo ln -s /etc/nginx/sites-available/BetAppConf /etc/nginx/sites-enabled
+	- Load configuration:
+		- $ sudo service nginx reload
+		- $ sudo service nginx restart
+
+- Set up Database
+	- Create Database
+		- $ mysql -u root -p
+		- insert root password
+		- $ CREATE DATABASE BetAppDB
+	- Edit DATABASE parameters on ./BetApp/settings.py file
+	- Install components:
+		- $ pip install mysql-python
+		- $ sudo apt-get install libmysqlclient-dev
+	- Do migations:
+		- $ ./manage.py makemigrations BetApp
+		- $ ./manage.py makemigrations cauth
+		- $ ./manage.py migrate
+
+- Run application
+	- $ uwsgi --ini BetApp_uwsgi.ini
+	- Visit the application on 127.0.0.1:8000
+	
+

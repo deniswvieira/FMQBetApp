@@ -1,5 +1,4 @@
 upstream django {
-	#server 127.0.0.1:8001;
 	server unix:/home/dwv/Documents/FMQDjango/FMQBetApp/BetApp/BetApp.sock;
 }
 
