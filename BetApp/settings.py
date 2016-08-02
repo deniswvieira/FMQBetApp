@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'BetApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FMQBetApp',
+        'NAME': 'DjangoTest',
         'USER': 'root',
         'PASSWORD': 'admin',
     }

@@ -24,13 +24,13 @@
 #Instalation
 - Set up Project and Virtual Environment
 	- Create the virtual environment (project folder):
-		- $ virtualenv BetAppEnv
-		- $ cd BetAppEnv
-		- $ source bin/activate
+		- `$ virtualenv BetAppEnv`
+		- `$ cd BetAppEnv`
+		- `$ source bin/activate`
 	- Install Django 1.9.8:
-		- $ pip install -I django==1.9.8
+		- `$ pip install -I django==1.9.8`
 	- Clone App into the project folder:
-		- $ git clone https://github.com/deniswvieira/FMQBetApp.git
+		- $ `git clone https://github.com/deniswvieira/FMQBetApp.git`
 
 - Set up Server with Nginx and uWSGI
 	- install uWSGI:
@@ -41,6 +41,7 @@
 		- Copy and paste the code on FMQBetAppConfig file and edit in order to path's match with your directories
 		- press Ctrl + X, y, and enter to exit when the file is ready
 		- $ sudo ln -s /etc/nginx/sites-available/BetAppConf /etc/nginx/sites-enabled
+		- It will give error if you have an other file on sites-enabled folder with the same listen, use $ sudo rm /etc/nginx/sites-enabled/filename to remove it
 	- Load configuration:
 		- $ sudo service nginx reload
 		- $ sudo service nginx restart
